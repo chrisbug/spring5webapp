@@ -21,21 +21,20 @@ public class Book {
     private String title;
     private String isbn;
     
+    @ManyToOne
+    Publisher publisher;
+    
     @ManyToMany
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
         inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Author> authors =  new HashSet<>(); 
 
-    @ManyToOne
-    @JoinColumn(name = "publisher_id"m )
-    private Set<Publisher> publisher = new HashSet<>();
 
-    public Set<Publisher> getPublisher() {
+    public Publisher getPublisher() {
         return publisher;
     }
-
     public void setPublisher(Publisher publisher) {
-        this.publisher.add(publisher);
+        this.publisher = publisher;
     }
 
     /**

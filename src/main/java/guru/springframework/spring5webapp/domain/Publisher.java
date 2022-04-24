@@ -8,11 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Publisher {
@@ -27,6 +23,9 @@ public class Publisher {
     private String zipcode;
 
     @OneToMany
+    @JoinColumn(name = "publisher_id")
+    public Set<Book> books = new HashSet<>();
+   
     public Set<Book> getBooks() {
         return books;
     }
@@ -35,8 +34,6 @@ public class Publisher {
         this.books = books;
     }
 
-    @OneToMany
-    public Set<Book> books = new HashSet<>();
 
     public Publisher(){}
 
